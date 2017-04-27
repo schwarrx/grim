@@ -12,8 +12,7 @@ message(";; binary directory: ${PROJECT_BINARY_DIR}")
 # Get a list of all of the source files in the directory:
 file(GLOB SOURCE
     "*.h"
-    "*.cpp" 
-    "*.cu"
+    "*.cpp"  
 )
 
  
@@ -45,7 +44,7 @@ IF(${ArrayFire_CUDA_FOUND} AND ${CUDA_FOUND})
         ${CMAKE_THREAD_LIBS_INIT} ${CUDA_LIBRARIES} ${NVVM_LIB} ${CUDA_CUBLAS_LIBRARIES} ${CUDA_cusolver_LIBRARY} ${CUDA_CUFFT_LIBRARIES} )
 ENDIF()
 
-
+find_package(OpenGL REQUIRED)
 
 find_package(OpenMP REQUIRED)
 if(OPENMP_FOUND)
@@ -67,9 +66,14 @@ message("Lib[VTK] include directory: ${VTK_INCLUDE_DIR}")
 message("Lib[VTK] libraries: ${VTK_LIBRARIES}")
 include(${VTK_USE_FILE})
 
+target_link_libraries(grimpDFM_lib ${OPENGL_LIBRARIES} )
 target_link_libraries(grimpDFM_lib  ${VTK_LIBRARIES})
+
+# link to other libraries in this project
 target_link_libraries(grimpDFM_lib grimpFFTConvolve)
- 
-target_link_libraries(grimpDFM grimpDFM_lib)
+target_link_libraries(grimpDFM_lib grimpCudaMC_lib)
+target_link_libraries(grimpDFM_lib grimpCudaMCPP_lib) 
+message(${OPENGL_LIBRARIES})
+target_link_libraries(grimpDFM glut ${OPENGL_LIBRARIES} grimpDFM_lib grimpCudaMCPP_lib )
 
 

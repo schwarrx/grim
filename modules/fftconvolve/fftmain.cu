@@ -2,9 +2,9 @@
 #include <stdio.h>      // stdio functions are used since C++ streams aren't necessarily thread safe
 #include <cufft.h> 
  
-#define NX 256
-#define NY 256
-#define NZ 256
+#define NX 1024
+#define NY 1024
+#define NZ 1024
  
 using namespace std;
 
@@ -53,11 +53,11 @@ int fftmain()
         //   local to each CPU thread
         //
         omp_set_num_threads(num_gpus);  // create as many CPU threads as there are CUDA devices
-    //omp_set_num_threads(2*num_gpus);// create twice as many CPU threads as there are CUDA devices
+      //omp_set_num_threads(2*num_gpus);// create twice as many CPU threads as there are CUDA devices
 #pragma omp parallel
     {
         unsigned int cpu_thread_id = omp_get_thread_num();
-                unsigned int num_cpu_threads = omp_get_num_threads();
+        unsigned int num_cpu_threads = omp_get_num_threads();
  
                 // set and check the CUDA device for this CPU thread
                 int gpu_id = -1;

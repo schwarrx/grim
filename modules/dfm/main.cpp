@@ -12,23 +12,25 @@
 #include "dfm.hpp"
 #include "options.hpp"
 
+
 using namespace std;
 
-int fftmain();
+//int fftmain();
+int mcmain(int argc, char *argv[]);
+
 
 int main(int argc, char *argv[]) {
 
     try {
-        fftmain();
-
-        // Select a device and display af::arrayfire info
+        //fftmain();
+        mcmain(argc, argv);
 
         std::string binvoxFile;
         int device;
 
         bool argsOk = processCommandLine(argc, argv, binvoxFile, device);
         if (!argsOk) {
-            return 1;
+            return (1);
         }
 
         dfmAnalysis(binvoxFile, device);
@@ -48,5 +50,5 @@ int main(int argc, char *argv[]) {
         getchar();
     }
 #endif
-    return 0;
+    return (0);
 }

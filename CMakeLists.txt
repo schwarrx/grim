@@ -7,9 +7,9 @@ option(debug "Build with debugging symbols." ON)
 
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_STANDARD_REQUIRED)
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wno-unused-parameter")
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lboost_program_options")
+#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wno-missing-field-initializers -Werror")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC ")
+#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lboost_program_options")
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin)
 
 if (debug)
