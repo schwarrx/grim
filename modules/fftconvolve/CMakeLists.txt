@@ -20,10 +20,8 @@ if(OPENMP_FOUND)
 	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-INCLUDE_DIRECTORIES(/usr/local/cuda/include)
-
-# nvcc flags                                                                                                                                                                                               
-#set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-gencode arch=compute_20,code=sm_20)
+#INCLUDE_DIRECTORIES(${CUDA_{PATH}/include)
+ 
 
 LIST(APPEND CUDA_NVCC_FLAGS --compiler-options -fno-strict-aliasing -lineinfo -use_fast_math -Xptxas -dlcm=cg -Wno-deprecated-gpu-targets)
 

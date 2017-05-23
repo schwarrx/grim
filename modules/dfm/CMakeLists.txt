@@ -23,7 +23,7 @@ ADD_EXECUTABLE(grimpDFM main.cpp)
 # Find the ArrayFire package.
 FIND_PACKAGE(ArrayFire REQUIRED) 
 INCLUDE_DIRECTORIES(${ArrayFire_INCLUDE_DIRS})
- 
+
 
 # ArrayFire CUDA backend
 FIND_PACKAGE(CUDA REQUIRED)
@@ -70,8 +70,7 @@ target_link_libraries(grimpDFM_lib ${OPENGL_LIBRARIES} )
 target_link_libraries(grimpDFM_lib  ${VTK_LIBRARIES})
 
 # link to other libraries in this project
-target_link_libraries(grimpDFM_lib grimpFFTConvolve)
-target_link_libraries(grimpDFM_lib grimpCudaMC_lib)
+target_link_libraries(grimpDFM_lib grimpFFTConvolve) 
 target_link_libraries(grimpDFM_lib grimpCudaMCPP_lib) 
 message(${OPENGL_LIBRARIES})
 target_link_libraries(grimpDFM glut ${OPENGL_LIBRARIES} grimpDFM_lib grimpCudaMCPP_lib )

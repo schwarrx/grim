@@ -16,14 +16,14 @@
 using namespace std;
 
 //int fftmain();
-int mcmain(int argc, char *argv[]);
-
+//int mcmain(int argc, char *argv[]);
+void runGraphicsTest(int argc, char **argv);
 
 int main(int argc, char *argv[]) {
 
     try {
         //fftmain();
-        mcmain(argc, argv);
+        runGraphicsTest(argc, argv);
 
         std::string binvoxFile;
         int device;

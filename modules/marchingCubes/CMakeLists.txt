@@ -28,12 +28,12 @@ if(OPENMP_FOUND)
 	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-INCLUDE_DIRECTORIES(/usr/local/cuda-8.0/include)
-INCLUDE_DIRECTORIES(/usr/local/cuda-8.0/samples/common/inc)
+INCLUDE_DIRECTORIES(${CUDA_PATH}/include)
+INCLUDE_DIRECTORIES(${CUDA_PATH}/samples/common/inc)
 
 # nvcc flags                                                                                                                                                                                               
 
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} --std=c++11 --keep  --generate-line-info 
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} --std=c++11 --keep --generate-line-info 
 --source-in-ptx -Xcompiler -Wall -Xcompiler -D__CORRECT_ISO_CPP11_MATH_H_PROTO )
 
 
@@ -47,7 +47,7 @@ cuda_compile(grimpCudaMC_O marchingCubes_kernel.cu OPTIONS -G)
 
 cuda_add_library(grimpCudaMC_lib ${grimpCudaMC_O})   
  
-target_link_libraries(grimpCudaMCPP_lib glut ${OPENGL_LIBRARIES})
+target_link_libraries(grimpCudaMCPP_lib grimpCudaMC_lib glut ${OPENGL_LIBRARIES})
 #target_link_libraries(grimpCudaMC_lib  ${OPENGL_LIBRARIES} grimpCudaMCPP_lib)
 
  
