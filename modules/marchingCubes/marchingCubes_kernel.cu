@@ -21,7 +21,7 @@
 #include <thrust/scan.h>
 
 #include "defines.h"
-#include "tables.h"
+#include "tables.h" 
 
 // textures containing look-up tables
 texture<uint, 1, cudaReadModeElementType> edgeTex;
