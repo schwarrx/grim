@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.2)
-project(grimp)
+project(grim)
 
 SET(BUILD_SHARED_LIBS ON)
 

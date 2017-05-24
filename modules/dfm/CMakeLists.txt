@@ -1,8 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
-project(grimpDFM)
+project(grimDFM)
 
-set(grimpDFM_VERSION_MAJOR 0)
-set(grimpDFM_VERSION_MINOR 1)
+set(grimDFM_VERSION_MAJOR 0)
+set(grimDFM_VERSION_MINOR 1)
 
 message(";; source directory: ${PROJECT_SOURCE_DIR}")
 message(";; binary directory: ${PROJECT_BINARY_DIR}")
@@ -16,8 +16,8 @@ file(GLOB SOURCE
 )
 
  
-ADD_LIBRARY(grimpDFM_lib ${SOURCE})
-ADD_EXECUTABLE(grimpDFM main.cpp)
+ADD_LIBRARY(grimDFM_lib ${SOURCE})
+ADD_EXECUTABLE(grimDFM main.cpp)
 
 
 # Find the ArrayFire package.
@@ -40,7 +40,7 @@ IF(${ArrayFire_CUDA_FOUND} AND ${CUDA_FOUND})
     
     LIST(APPEND CUDA_NVCC_FLAGS --compiler-options -fno-strict-aliasing -lineinfo -use_fast_math -Xptxas -dlcm=cg)
     
-    TARGET_LINK_LIBRARIES(grimpDFM_lib ${ArrayFire_CUDA_LIBRARIES}
+    TARGET_LINK_LIBRARIES(grimDFM_lib ${ArrayFire_CUDA_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT} ${CUDA_LIBRARIES} ${NVVM_LIB} ${CUDA_CUBLAS_LIBRARIES} ${CUDA_cusolver_LIBRARY} ${CUDA_CUFFT_LIBRARIES} )
 ENDIF()
 
@@ -58,7 +58,7 @@ message("Lib[Boost] libraries: ${Boost_LIBRARIES}")
 include_directories(${Boost_INCLUDE_DIR}) 
 
 FIND_PACKAGE(Boost COMPONENTS program_options REQUIRED) 
-TARGET_LINK_LIBRARIES(grimpDFM_lib  ${Boost_LIBRARIES})
+TARGET_LINK_LIBRARIES(grimDFM_lib  ${Boost_LIBRARIES})
 
 find_package(VTK REQUIRED)
 message("Lib[VTK] use file: ${VTK_USE_FILE}")
@@ -66,13 +66,13 @@ message("Lib[VTK] include directory: ${VTK_INCLUDE_DIR}")
 message("Lib[VTK] libraries: ${VTK_LIBRARIES}")
 include(${VTK_USE_FILE})
 
-target_link_libraries(grimpDFM_lib ${OPENGL_LIBRARIES} )
-target_link_libraries(grimpDFM_lib  ${VTK_LIBRARIES})
+target_link_libraries(grimDFM_lib ${OPENGL_LIBRARIES} )
+target_link_libraries(grimDFM_lib  ${VTK_LIBRARIES})
 
 # link to other libraries in this project
-target_link_libraries(grimpDFM_lib grimpFFTConvolve) 
-target_link_libraries(grimpDFM_lib grimpCudaMCPP_lib) 
+target_link_libraries(grimDFM_lib grimFFTConvolve) 
+target_link_libraries(grimDFM_lib grimCudaMCPP_lib) 
 message(${OPENGL_LIBRARIES})
-target_link_libraries(grimpDFM glut ${OPENGL_LIBRARIES} grimpDFM_lib grimpCudaMCPP_lib )
+target_link_libraries(grimDFM glut ${OPENGL_LIBRARIES} grimDFM_lib grimCudaMCPP_lib )
 
 

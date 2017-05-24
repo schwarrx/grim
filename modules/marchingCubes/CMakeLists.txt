@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
-project(grimpCUDAMarchingCubes)
+project(grimCUDAMarchingCubes)
 
 
 message(";; source directory: ${PROJECT_SOURCE_DIR}")
@@ -13,7 +13,7 @@ file(GLOB SOURCE
     "*.cpp"
 )
 
-ADD_LIBRARY(grimpCudaMCPP_lib ${SOURCE})
+ADD_LIBRARY(grimCudaMCPP_lib ${SOURCE})
 
 find_package(CUDA REQUIRED)  
 
@@ -43,12 +43,12 @@ LIST(APPEND CUDA_NVCC_FLAGS --compiler-options -fno-strict-aliasing -lineinfo -u
 
 
 
-cuda_compile(grimpCudaMC_O marchingCubes_kernel.cu OPTIONS -G)
+cuda_compile(grimCudaMC_O marchingCubes_kernel.cu OPTIONS -G)
 
-cuda_add_library(grimpCudaMC_lib ${grimpCudaMC_O})   
+cuda_add_library(grimCudaMC_lib ${grimCudaMC_O})   
  
-target_link_libraries(grimpCudaMCPP_lib grimpCudaMC_lib glut ${OPENGL_LIBRARIES})
-#target_link_libraries(grimpCudaMC_lib  ${OPENGL_LIBRARIES} grimpCudaMCPP_lib)
+target_link_libraries(grimCudaMCPP_lib grimCudaMC_lib glut ${OPENGL_LIBRARIES})
+#target_link_libraries(grimCudaMC_lib  ${OPENGL_LIBRARIES} grimCudaMCPP_lib)
 
  
 

@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
-project(grimpFFTConvolve)
+project(grimFFTConvolve)
 
 
 message(";; source directory: ${PROJECT_SOURCE_DIR}")
@@ -25,13 +25,13 @@ endif()
 
 LIST(APPEND CUDA_NVCC_FLAGS --compiler-options -fno-strict-aliasing -lineinfo -use_fast_math -Xptxas -dlcm=cg -Wno-deprecated-gpu-targets)
 
-cuda_compile(grimpFFT_O fftmain.cu OPTIONS -G)
+cuda_compile(grimFFT_O fftmain.cu OPTIONS -G)
 
 
-cuda_add_library(grimpFFTConvolve ${grimpFFT_O})
-cuda_add_cufft_to_target(grimpFFTConvolve)
+cuda_add_library(grimFFTConvolve ${grimFFT_O})
+cuda_add_cufft_to_target(grimFFTConvolve)
 
-#target_link_libraries(grimpFFTConvolve grimpFFTConvolve_lib)
+#target_link_libraries(grimFFTConvolve grimFFTConvolve_lib)
 
 
 
